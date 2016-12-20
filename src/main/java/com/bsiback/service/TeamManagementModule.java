@@ -1,9 +1,13 @@
 package com.bsiback.service;
 
 import com.bsiback.model.Team;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tarcísio on 12/09/2016.
@@ -18,6 +22,24 @@ public class TeamManagementModule  {
     @Path("/teams")
     @Produces("application/json")
     public Response getUserById(){
+
+        // First unit of work
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        List employees = session.createQuery("FROM teams").list();
+        System.out.println( employees.size() + " message(s) found:" );
+
+
+
+
+        tx.commit();
+        session.close();
+
+
+
+
+        System.out.println( employees.size() + " message(s) found:" );
+
 
         ArrayList<Team> Teams = new ArrayList<Team>();
 
