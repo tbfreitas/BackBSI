@@ -1,8 +1,13 @@
 package com.bsiback.service;
 
 import com.bsiback.model.Team;
+import com.bsiback.model.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -16,36 +21,32 @@ import java.util.List;
 @Path("/team-management")
 public class TeamManagementModule  {
 
-
-
     @GET
     @Path("/teams")
     @Produces("application/json")
     public Response getUserById(){
 
-        // First unit of work
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        SessionFactory sessionFactory;
+        sessionFactory = new Configuration()
+                .configure() // configures settings from hibernate.cfg.xml
+                .buildSessionFactory();
+
+        Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        List employees = session.createQuery("FROM teams").list();
-        System.out.println( employees.size() + " message(s) found:" );
+
+        Query query = session.createQuery("from User");
 
 
+        List<?> list = query.list();
+        User usr = (User) list.get(0);
 
-
-        tx.commit();
-        session.close();
-
-
-
-
-        System.out.println( employees.size() + " message(s) found:" );
-
+        System.out.println(usr.getNome());
 
         ArrayList<Team> Teams = new ArrayList<Team>();
 
         Team BigData = new Team();
 
-        BigData.setNome("BigData");
+        BigData.setNome(usr.getNome());
         BigData.setImage("Assets/Images/cobol.png");
         Teams.add(BigData);
 
@@ -63,9 +64,9 @@ public class TeamManagementModule  {
 
         Team ETL = new Team();
 
-        ETL.setNome("ETL");
-        ETL.setImage("Assets/Images/etl.png");
-        Teams.add(ETL);
+//        ETL.setNome("ETL");
+//        ETL.setImage("Assets/Images/etl.png");
+//        Teams.add(ETL);
 
         return Response.ok(200).entity(Teams).build();
 
