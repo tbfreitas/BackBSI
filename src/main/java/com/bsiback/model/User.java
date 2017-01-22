@@ -24,6 +24,9 @@ public class User implements Serializable {
     @Column(name = "nome")
     private String nome;
 
+    @Column(name= "team")
+    private int team;
+
     public int getId() {
         return id;
     }
@@ -31,6 +34,15 @@ public class User implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getTeam() {
+        return team;
+    }
+
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
 
     public String getNome() {
         return nome;

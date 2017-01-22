@@ -10,6 +10,9 @@
           <element id="archive" name="RESTfulDemoApplication-1.0-SNAPSHOT.jar">
             <element id="module-output" name="BackBSI" />
           </element>
+          <element id="archive" name="BackBSIArtifact-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="BackBSI" />
+          </element>
           <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-jaxrs:2.3.1.GA" />
           <element id="library" level="project" name="Maven: org.jboss.resteasy:jaxrs-api:2.3.1.GA" />
           <element id="library" level="project" name="Maven: org.scannotation:scannotation:1.0.3" />
@@ -29,7 +32,6 @@
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.8.5" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.8.5" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-xc:1.8.5" />
-          <element id="library" level="project" name="Maven: com.bsiback:RESTfulDemoApplication:1.0-SNAPSHOT" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.0.0.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" />

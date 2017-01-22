@@ -2,13 +2,37 @@ package com.bsiback.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Created by Tarcísio on 12/09/2016.
  */
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "team")
+@Entity
+@Table(name="teams")
 public class Team {
 
+    @Id
+    @Column(name = "id")
+    private int id;
+
+    @Column(name="nome")
     private String Nome;
-    private String Image;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @JsonProperty("Nome")
     public String getNome() {
@@ -19,12 +43,4 @@ public class Team {
         this.Nome = nome;
     }
 
-    @JsonProperty("Image")
-    public String getImage() {
-        return Image;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
 }

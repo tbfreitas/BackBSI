@@ -9,17 +9,30 @@
         <param-name>resteasy.scan</param-name>
         <param-value>true</param-value>
     </context-param>
-
     <servlet>
+
         <servlet-name>resteasy-servlet</servlet-name>
         <servlet-class>
             org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
         </servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+            <param-value>com.bsiback.service.CORSFilter</param-value>
+        </init-param>
 
     </servlet>
+
+
+
+
+
     <servlet-mapping>
         <servlet-name>resteasy-servlet</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+
+
+
+
 
 </web-app>
