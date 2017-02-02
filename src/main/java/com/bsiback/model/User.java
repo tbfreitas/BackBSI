@@ -2,10 +2,7 @@ package com.bsiback.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,6 +23,20 @@ public class User implements Serializable {
 
     @Column(name= "team")
     private int team;
+
+    @OneToOne
+    private Caracter_User carac;
+
+    @Column(name="image")
+    private byte[] image;
+
+    public  byte[] getImage() {
+        return image;
+    }
+
+    public void setImage( byte[] image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;
@@ -50,5 +61,13 @@ public class User implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Caracter_User getCarac() {
+        return carac;
+    }
+
+    public void setCarac(Caracter_User carac) {
+        this.carac = carac;
     }
 }

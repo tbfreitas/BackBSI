@@ -1,5 +1,8 @@
 package com.bsiback.service;
 
+import com.bsiback.dao.TeamDao;
+import com.bsiback.dao.UserDao;
+import com.bsiback.model.Caracter_User;
 import com.bsiback.model.Team;
 import com.bsiback.model.User;
 import org.hibernate.Query;
@@ -17,64 +20,32 @@ import java.util.List;
  * Created by Tarcísio on 12/09/2016.
  */
 
-
 @Path("/team-management")
 public class RestApplication {
-
-    @GET
-    @Path("/users")
-    @Produces("application/json")
-    public Response getUserById(){
-
-
-        SessionFactory sessionFactory;
-        sessionFactory = new Configuration()
-                .configure() // configures settings from hibernate.cfg.xml
-                .buildSessionFactory();
-
-        Session session = sessionFactory.openSession();
-        //Transaction tx = session.beginTransaction();
-
-        Query query = session.createQuery("from User");
-
-        ArrayList<User> Users = new ArrayList<User>();
-
-        List<?> list = query.list();
-
-        for(int i = 0 ; i < list.size(); i++){
-            User usr = (User) list.get(i);
-            Users.add(usr);
-        }
-
-        return Response.ok(200).entity(Users).build();
-
-    }
 
     @GET
     @Path("/teams")
     @Produces("application/json")
     public Response getTeams(){
 
-        SessionFactory sessionFactory;
-        sessionFactory = new Configuration()
-                .configure()
-                .buildSessionFactory();
+        TeamDao teamDao = new TeamDao();
 
-        Session session = sessionFactory.openSession();
-        //Transaction tx = session.beginTransaction();
+        ArrayList<Team> Teams = teamDao.getTeams();
 
-        Query query = session.createQuery("from Team");
+        return Response.ok().entity(Teams).header("Access-Control-Allow-Origin", "*").build();
 
-        ArrayList<Team> Teams = new ArrayList<Team>();
+    }
 
-        List<?> list = query.list();
+    @GET
+    @Path("/teams/{id}")
+    @Produces("application/json")
+    public Response getWorkersOfTeams(@PathParam("id") int id){
 
-        for(int i = 0 ; i < list.size(); i++){
-            Team team = (Team) list.get(i);
-            Teams.add(team);
-        }
+        UserDao userDao = new UserDao();
 
-        return Response.ok(200).entity(Teams).build();
+        ArrayList<User> employersTeam = userDao.listEmployersByTeam(id);
+
+        return Response.ok().entity(employersTeam).header("Access-Control-Allow-Origin", "*").build();
 
     }
 }

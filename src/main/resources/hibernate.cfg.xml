@@ -16,6 +16,7 @@
         <!-- User -->
         <mapping class="com.bsiback.model.User" />
         <mapping class="com.bsiback.model.Team" />
+        <mapping class="com.bsiback.model.Caracter_User" />
 
     </session-factory>
 </hibernate-configuration>
