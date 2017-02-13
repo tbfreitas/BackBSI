@@ -47,6 +47,7 @@
           <element id="library" level="project" name="Maven: org.beanshell:bsh:2.0b4" />
           <element id="library" level="project" name="Maven: freemarker:freemarker:2.3.8" />
           <element id="library" level="project" name="Maven: org.hibernate:jtidy:r8-20060801" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
